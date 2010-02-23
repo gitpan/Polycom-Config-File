@@ -1,7 +1,7 @@
 ---
 name: Polycom-Config-File
-version: 0.01
-author: ["Zachary Blair <zachary.blair@polycom.com>"]
+version: 0.02
+author: ["Zachary Blair <zblair@cpan.org>"]
 abstract: 'Parse config files for Polycom VoIP phones'
 license: perl
 distribution_type: module
@@ -14,11 +14,11 @@ requires:
   IO::File: 0
   Test::More: 0
   XML::Twig: 0
-  perl: 5.6.2
+  perl: 5.8
 provides:
-  Polycom-Config-File:
+  Polycom::Config::File:
     file: lib/Polycom/Config/File.pm
-    version: 0.01
+    version: 0.02
 keywords:
   - Polycom
   - VoIP

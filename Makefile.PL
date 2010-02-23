@@ -16,5 +16,5 @@ WriteMakefile(
     },
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM      => 'lib/Polycom/Config/File.pm', # retrieve abstract from module
-       AUTHOR             => 'Zachary Blair <zachary.blair@polycom.com>') : ()),
+       AUTHOR             => 'Zachary Blair <zblair@cpan.org>') : ()),
 );

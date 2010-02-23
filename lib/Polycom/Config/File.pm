@@ -9,7 +9,7 @@ use File::Spec;
 use IO::File;
 use XML::Twig;
 
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 ######################################
 # Overloaded Operators
@@ -263,7 +263,7 @@ Polycom::Config::File - Module for parsing, modifying, and creating Polycom VoIP
 
 =head1 DESCRIPTION
 
-This module parses Polycom VoIP phone config files, and can be used to read, modify, or create config files for Polycom's SoundPoint IP, SoundStation IP, and VVX series of VoIP phones.
+This module can be used to read, modify, or create config files for Polycom's SoundPoint IP, SoundStation IP, and VVX series of VoIP phones.
 
 Configuration files enable administrators to configure phone parameters ranging from line registrations, to preferred codecs, to background images.
 
@@ -277,16 +277,16 @@ The files are structured using XML, where each attribute is named after a config
   778xxxxxxx|[2-4]xxx"/>
   </localcfg>
 
-For more information about managing configuration files on Polycom SoundPoint IP or SoundStation IP phones, see the "I<Configuration File Management on Polycom SoundPoint IP Phones>" document at L<http://www.polycom.com/global/documents/whitepapers/configuration_file_management_on_soundpoint_ip_phones.pdf>.
+For more information about managing configuration files on Polycom SoundPoint IP, SoundStation IP, or VVX VoIP phones, see the "I<Configuration File Management on Polycom SoundPoint IP Phones>" document at L<http://www.polycom.com/global/documents/whitepapers/configuration_file_management_on_soundpoint_ip_phones.pdf>.
 
-For a detailed list of available configuration parameters, consult the "I<SoundPoint IP, SoundStation IP and Polycom VVX Administrator's Guide>" at L<http://www.polycom.com/global/documents/support/setup_maintenance/products/voice/spip_ssip_vvx_Admin_Guide_SIP_3_2_2_eng.pdf>.
+For a detailed list of available configuration parameters, consult the "I<SoundPoint IP, SoundStation IP and Polycom VVX Administrator's Guide>" document at L<http://www.polycom.com/global/documents/support/setup_maintenance/products/voice/spip_ssip_vvx_Admin_Guide_SIP_3_2_2_eng.pdf>.
 
 =head1 CONSTRUCTOR
 
 =head2 new
 
   # Create a new empty config file
-  my $cfg = Polycom::Config::File->new('new-sip.cfg');
+  my $cfg = Polycom::Config::File->new();
 
   # Load a directory from a filename or file handle
   my $cfg2 = Polycom::Config::File->new('0004f21ac123-sip.cfg');
@@ -322,13 +322,13 @@ Because the I<==> and I<!=> operators have also been overloaded for C<Polycom::C
     print "The config files are equal\n";
   }
 
-=head2 save ( $filename | $file_handle )
+=head2 save ( $filename )
 
   $dir->save('0004f21acabf-directory.xml');
-  # or
-  $dir->save($fh);
 
-Writes the contents of the contact directory object to the specified file such that a phone will be able to read those contacts from the file if the file is placed on the phone's boot server.
+Writes the configuration parameters to the specified file.
+
+For the phone to load the parameters in the file, you will need to place the file on the phone's boot server and add its filename to the I<CONFIG_FILES> field in I<<Ethernet address>>.cfg, as described in the "I<Configuration File Management on Polycom SoundPoint IP Phones>" document listed at the bottom of this page. The phone must then be restarted for it to pick up the changes to its configuration.
 
 =head2 to_xml
 
@@ -340,7 +340,7 @@ Returns the XML representation of the config. It is exactly this XML representat
 
 =over
 
-=item C<Polycom::Contact::Directory> - module that parses the XML-based local contact directory file used by Polycom SoundPoint IP, SoundStation IP, and VVX VoIP phones, and can be used to read, modify, or create contacts in the file.
+=item C<Polycom::Contact::Directory> - parses the XML-based local contact directory files used by Polycom SoundPoint IP, SoundStation IP, and VVX VoIP phones.
 
 =item I<Configuration File Management on Polycom SoundPoint IP Phones> - L<http://www.polycom.com/global/documents/whitepapers/configuration_file_management_on_soundpoint_ip_phones.pdf>
 
