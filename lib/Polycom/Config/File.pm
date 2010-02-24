@@ -4,12 +4,11 @@ use warnings;
 use strict;
 
 use Encode;
-use File::Copy;
 use File::Spec;
 use IO::File;
 use XML::Twig;
 
-our $VERSION = 0.02;
+our $VERSION = 0.03;
 
 ######################################
 # Overloaded Operators
@@ -243,7 +242,7 @@ sub __nospace
 
 =head1 NAME
 
-Polycom::Config::File - Module for parsing, modifying, and creating Polycom VoIP phone config files.
+Polycom::Config::File - Parser for Polycom VoIP phone config files.
 
 =head1 SYNOPSIS
 
@@ -252,10 +251,10 @@ Polycom::Config::File - Module for parsing, modifying, and creating Polycom VoIP
   # Load an existing config file
   my $cfg = Polycom::Config::File->new('0004f21ac123-regLine.cfg');
 
-  # Read some parameters
-  my $dialmap = $cfg->params->{'dialplan.digitmap'};
+  # Read the 'dialplan.digitmap' parameter
+  my $digitmap = $cfg->params->{'dialplan.digitmap'};
 
-  # Modify some parameters
+  # Modify the 'voIpProt.server.1.address' parameter 
   $cfg->params->{'voIpProt.server.1.address'} = 'test.example.com';
 
   # Save the file
@@ -290,7 +289,7 @@ For a detailed list of available configuration parameters, consult the "I<SoundP
 
   # Load a directory from a filename or file handle
   my $cfg2 = Polycom::Config::File->new('0004f21ac123-sip.cfg');
-  my $cfg3 = Polycom::Config::File->new(\*FILEHANDLE);
+  my $cfg3 = Polycom::Config::File->new($fh);
 
 If you have already slurped the contents of a config file into a scalar, you can also pass that scalar to C<new> to parse those XML contents.
 
@@ -305,6 +304,10 @@ If you have already slurped the contents of a config file into a scalar, you can
   $cfg->params->{'voIpProt.server.1.address'} = 'test.example.com';
 
 Returns a reference to a hash containing all of the config parameters in the config file. If you modify this hash, your changes will be written to the file when you call C<save>.
+
+=head2 path
+
+If this object was created by passing a file path to C<new>, then this function will return that file path. Otherwise, C<path> simply returns I<undef>.
 
 =head2 equals ( $cfg2 )
 

@@ -1,9 +1,12 @@
-Polycom::Config::File version 0.02
+Polycom::Config::File version 0.03
 ================================
 
-This module can be used to parse, modify, or create config files like those used by Polycom's SoundPoint IP, SoundStation IP, and VVX line of VoIP phones.
+This module can be used to parse, modify, or create config files like those used by Polycom's SoundPoint IP,
+SoundStation IP, and VVX line of VoIP phones.
 
-For more information about managing configuration files on Polycom SoundPoint IP, SoundStation IP, or VVX VoIP phones, see the "Configuration File Management on Polycom SoundPoint IP Phones" document at http://www.polycom.com/global/documents/whitepapers/configuration_file_management_on_soundpoint_ip_phones.pdf .
+For more information about managing configuration files on Polycom SoundPoint IP, SoundStation IP, or VVX
+VoIP phones, see the "Configuration File Management on Polycom SoundPoint IP Phones" document at
+http://www.polycom.com/global/documents/whitepapers/configuration_file_management_on_soundpoint_ip_phones.pdf.
 
 INSTALLATION
 
@@ -17,7 +20,6 @@ To install this module type the following:
 DEPENDENCIES
 
 Encode
-File::Copy
 File::Spec
 IO::File
 Test::More

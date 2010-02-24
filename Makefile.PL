@@ -8,7 +8,6 @@ WriteMakefile(
     VERSION_FROM          => 'lib/Polycom/Config/File.pm', # finds $VERSION
     PREREQ_PM             => {
         'Encode'                => 0,
-        'File::Copy'            => 0,
         'File::Spec'            => 0,
         'IO::File'              => 0,
         'Test::More'            => 0,

@@ -7,7 +7,7 @@ use Test::More tests => 4;
 BEGIN { use_ok('Polycom::Config::File') };
 
 # Test that the appropriate methods exist
-can_ok('Polycom::Config::File', qw(new equals params save to_xml));
+can_ok('Polycom::Config::File', qw(new equals params path save to_xml));
 
 # Test that we can parse a very simple config file
 my $xml = <<'CFG_XML';
