@@ -1,7 +1,8 @@
 Changes
 Makefile.PL
-manifest
-readme
+MANIFEST
+META.yml
+README
 t/00-basic.t
 t/01-utf8.t
 t/02-entities.t

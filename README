@@ -1,4 +1,4 @@
-Polycom::Config::File version 0.03
+Polycom::Config::File version 0.04
 ================================
 
 This module can be used to parse, modify, or create config files like those used by Polycom's SoundPoint IP,
